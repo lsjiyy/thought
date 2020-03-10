@@ -1,0 +1,47 @@
+jwt
+	jsonWebToken 
+	接口表
+	角色表
+	
+	角色接口关联表
+	
+	系统用户表
+		
+	系统用户角色表
+	
+	
+	角色对应的接口权限
+	
+	
+	用户登录生成token
+	ROWS 接口
+	
+	用户token 可以缓存redis中,设置有效时间
+	用户退出登录删除token,
+	调用接口时查询redis中是否有token
+	没有token重新登录
+	
+	接口缓存到map中
+	
+	缓存到map中
+	PATH+METHOD 
+	new RequestUrl
+		path:
+		method
+	
+	过滤器收到请求时 对接口进行鉴权
+	请求的接口是否是需要鉴权的接口
+	 map.put(new RequestUrl(path,method)
+	若不是
+		认证通过
+	若是
+		查询请求头是否携带token beaer token
+	对token进行解析
+	获取到map 
+	map.get('ROLES') 获取到接口id
+	循环 遍历接口
+	循环到 return通过
+	
+	循环结束 没有的话不通过鉴权返回权限不足
+	
+	
