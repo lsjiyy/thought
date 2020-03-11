@@ -1,0 +1,15 @@
+db里的数据关于删除
+加上dealFlag表明当前数据是否删除
+
+对于合适的字段添加索引
+ALTER TABLE user_info ADD INDEX index_name (open_id) 
+删除索引
+ALTER TABLE user_info DROP INDEX index_name ;
+
+关于数据库乐观锁
+可以在字段里加上version的字段
+
+查询的时候把version查出来
+
+修改的时候
+update table set version= #{version}+1 where version =#{version}
