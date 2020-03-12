@@ -1,0 +1,29 @@
+楼中楼的表结构简单实现
+
+CREATE table discuss_info(
+discuss_id BIGINT PRIMARY KEY AUTO_INCREMENT COMMENT '评论ID',
+user_id BIGINT COMMENT '用户Id',
+content VARCHAR(200) COMMENT '内容',
+target_id BIGINT COMMENT '评论主题Id',
+create_time DATETIME COMMENT '创建时间'
+) COMMENT '评论主题';
+
+CREATE table discuss_son(
+  son_id BIGINT PRIMARY KEY AUTO_INCREMENT COMMENT '子评论ID',
+  discuss_id BIGINT COMMENT '主评论Id',
+  user_id BIGINT COMMENT '用户Id',
+  reply_user_id BIGINT COMMENT '回复子Id',
+  content VARCHAR(200) COMMENT '内容',
+  create_time DATETIME COMMENT '创建时间'
+)COMMENT '子评论Id';
+
+
+#主题下的评论
+select * from discuss_info where target_id =1;
+#评论下的子评论
+select * from discuss_son where target_id=1 and reply_user_id =0;
+#子评论用户下的回复
+select * from discuss_son WHERE target_id =1 and reply_user_id =上面查出来的userid order by create_time desc
+
+
+数据量大的时候 需要分页处理
